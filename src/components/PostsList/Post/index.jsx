@@ -54,6 +54,7 @@ const Post = ({ post }) => {
       return
     }
     editPostLikes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [like]);
 
   const destroyPost = (toDeletePost) => {
