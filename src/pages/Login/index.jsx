@@ -45,7 +45,7 @@ const Login = () => {
       })
       .catch(error => {
         dispatch(authFailed())
-        alert('Erreur avec la combinaison Identifiant / Mot de passe')
+        console.error('Erreur avec la combinaison Identifiant / Mot de passe')
       })
   }
 

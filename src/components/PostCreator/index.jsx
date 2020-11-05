@@ -38,7 +38,7 @@ const PostCreator = () => {
       setMessage('')
     })
     .catch(error => {
-      alert(error)
+      console.error(error)
     })
   }
 

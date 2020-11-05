@@ -74,7 +74,7 @@ const Post = ({ post }) => {
       dispatch(deletePost(response))
     })
     .catch(error => {
-      alert(error)
+      console.error(error)
     })
   }
   

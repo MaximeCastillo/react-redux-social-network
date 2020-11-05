@@ -22,7 +22,7 @@ const PostsList = () => {
           dispatch(loadPosts(response));
         })
         .catch((error) => {
-          alert(error);
+          console.error(error);
         });
     }
     searchPosts()

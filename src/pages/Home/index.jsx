@@ -31,7 +31,7 @@ const Home = () => {
       dispatch(loadPostsCount(response));
     })
     .catch((error) => {
-      alert(error);
+      console.error(error);
     });
   }
 

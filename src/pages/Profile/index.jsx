@@ -36,7 +36,7 @@ const Profile = () => {
       window.location.reload();
     })
     .catch(error => {
-      alert(error)
+      console.error(error)
     })
   }
 
@@ -60,7 +60,7 @@ const Profile = () => {
         setUserPosts(response)
       })
       .catch((error) => {
-        alert(error)
+        console.error(error)
       })}
       fetchPosts()
   }, [token, user.id])

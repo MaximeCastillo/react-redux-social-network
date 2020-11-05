@@ -29,7 +29,7 @@ const OtherProfile = () => {
       setUser(response)
     })
     .catch((error) => {
-      alert(error)
+      console.error(error)
     })}
 
     const fetchPosts = () => {
@@ -51,7 +51,7 @@ const OtherProfile = () => {
         setUserPosts(response)
       })
       .catch((error) => {
-        alert(error)
+        console.error(error)
       })}
       fetchUser()
       fetchPosts()

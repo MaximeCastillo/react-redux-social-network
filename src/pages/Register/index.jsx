@@ -47,7 +47,7 @@ const Register = () => {
       })
       .catch(error => {
         dispatch(authFailed())
-        alert(error)
+        console.error(error)
       })
   }
 
