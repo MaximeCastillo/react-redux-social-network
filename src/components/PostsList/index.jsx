@@ -32,7 +32,7 @@ const PostsList = () => {
     <div>
       <h2>Voici les posts :</h2>
       <div className="d-flex" style={{flexWrap: 'wrap'}}>
-        {posts.map((post) => (
+        {posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
           <Post post={post} key={post.id}/>
         ))}
       </div>
