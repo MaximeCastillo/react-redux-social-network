@@ -8,6 +8,7 @@ const Profile = () => {
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
   const [userPosts , setUserPosts] = useState([]);
+  const posts = useSelector(state => state.posts.posts);
 
   const profilChange = (e) => {
     e.preventDefault()
@@ -62,7 +63,7 @@ const Profile = () => {
         console.error(error)
       })}
       fetchPosts()
-  }, [token, user.id])
+  }, [token, user.id, posts])
   
 
   return (

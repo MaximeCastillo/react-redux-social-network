@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from 'js-cookie';
 import Post from 'components/PostsList/Post';
+import { useSelector } from "react-redux";
 
 const OtherProfile = () => {
   let { userID } = useParams();
   const token = Cookies.get('token')
   const [user , setUser] = useState({})
   const [userPosts , setUserPosts] = useState([])
+  const posts = useSelector(state => state.posts.posts);
 
   useEffect(() => {
     const fetchUser = () => {
@@ -53,7 +55,7 @@ const OtherProfile = () => {
       })}
       fetchUser()
       fetchPosts()
-  }, [token, userID])
+  }, [token, userID, posts])
 
   return (
     <section>
