@@ -8,9 +8,10 @@ import { loadPostsCount } from "redux/posts/postsActions";
 
 const Home = () => {
   const isAuthenticated = useSelector(state => state.authentification.isAuthenticated)
-  const postsCount = useSelector((state) => state.posts.postsCount);
+  const postsCount = useSelector(state => state.posts.postsCount);
   const dispatch = useDispatch();
   const token = useSelector(state => state.authentification.token);
+  const posts = useSelector(state => state.posts.posts)
   
   const loadCount = () => {
     fetch("https://my-pasteque-space.herokuapp.com/posts/count", {
@@ -39,7 +40,7 @@ const Home = () => {
       loadCount()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated])
+  }, [isAuthenticated, posts])
 
   return (
     <div>
