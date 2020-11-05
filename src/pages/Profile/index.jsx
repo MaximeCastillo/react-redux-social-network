@@ -45,7 +45,6 @@ const Profile = () => {
       fetch(`https://my-pasteque-space.herokuapp.com/posts?_sort=created_at:desc&user.id=${user.id}`, {
         method: "get",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })

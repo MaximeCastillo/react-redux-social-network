@@ -14,7 +14,6 @@ const OtherProfile = () => {
       fetch(`https://my-pasteque-space.herokuapp.com/users/${userID}`, {
       method: "get",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
@@ -36,7 +35,6 @@ const OtherProfile = () => {
       fetch(`https://my-pasteque-space.herokuapp.com/posts?_sort=created_at:desc&user.id=${userID}`, {
         method: "get",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
