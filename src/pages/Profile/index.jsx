@@ -42,7 +42,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchPosts = () => {
-      fetch(`https://my-pasteque-space.herokuapp.com/posts?user.id=${user.id}`, {
+      fetch(`https://my-pasteque-space.herokuapp.com/posts?_sort=created_at:desc&user.id=${user.id}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const Profile = () => {
         </button>
       </form>
       <div className="d-flex" style={{flexWrap: 'wrap'}}>
-        {userPosts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
+        {userPosts.map((post) => (
           <Post post={post} key={post.id}/>
         ))}
       </div>

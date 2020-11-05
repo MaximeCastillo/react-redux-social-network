@@ -10,7 +10,7 @@ const PostsList = () => {
 
   useEffect(() => {
     const searchPosts = () => {
-      fetch("https://my-pasteque-space.herokuapp.com/posts")
+      fetch("https://my-pasteque-space.herokuapp.com/posts?_sort=created_at:desc")
         .then((response) => {
           if (!response.ok) {
             throw Error(response.statusText);
@@ -32,7 +32,7 @@ const PostsList = () => {
     <div>
       <h2>Voici les posts :</h2>
       <div className="d-flex" style={{flexWrap: 'wrap'}}>
-        {posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
+        {posts.map((post) => (
           <Post post={post} key={post.id}/>
         ))}
       </div>

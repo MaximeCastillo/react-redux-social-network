@@ -4,14 +4,14 @@ import Cookies from 'js-cookie';
 import Post from 'components/PostsList/Post';
 
 const OtherProfile = () => {
-  let { userId } = useParams();
+  let { userID } = useParams();
   const token = Cookies.get('token')
   const [user , setUser] = useState({})
   const [userPosts , setUserPosts] = useState([])
 
   useEffect(() => {
     const fetchUser = () => {
-      fetch(`https://my-pasteque-space.herokuapp.com/users/${userId}`, {
+      fetch(`https://my-pasteque-space.herokuapp.com/users/${userID}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const OtherProfile = () => {
     })}
 
     const fetchPosts = () => {
-      fetch(`https://my-pasteque-space.herokuapp.com/posts?user.id=${userId}`, {
+      fetch(`https://my-pasteque-space.herokuapp.com/posts?_sort=created_at:desc&user.id=${userID}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -55,14 +55,14 @@ const OtherProfile = () => {
       })}
       fetchUser()
       fetchPosts()
-  }, [token, userId])
+  }, [token, userID])
 
   return (
     <section>
       <h1>Bienvenue sur le profil de {user.username}</h1>
       <p>{user.description}</p>
       <div className="d-flex" style={{flexWrap: 'wrap'}}>
-        {userPosts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
+        {userPosts.map((post) => (
           <Post post={post} key={post.id}/>
         ))}
       </div>
