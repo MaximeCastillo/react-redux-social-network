@@ -93,10 +93,10 @@ const Post = ({ post }) => {
           {post.user && isAuthenticated && post.user.id === user.id &&
             <Button type="submit" onClick={() => destroyPost(post)}>Supprimer</Button>
           }
-          {!alreadyLiked &&
+          {!alreadyLiked && isAuthenticated &&
           <Button type="submit" variant="success" onClick={() => likePost(post)}>👍</Button>
           }
-          {alreadyLiked &&
+          {alreadyLiked && isAuthenticated &&
           <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>👎</Button>
           }
         </Card.Body>
