@@ -38,7 +38,7 @@ const Header = () => {
       return (
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/">My Social Network</Navbar.Brand>
-          <Nav className="mr-auto">
+          <Nav className="ml-auto">
             <Nav className="nav-item">
               <Link to="/">Accueil</Link>
             </Nav>
