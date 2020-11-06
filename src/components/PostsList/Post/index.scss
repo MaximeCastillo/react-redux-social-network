@@ -15,10 +15,13 @@
 
 .authorDiv {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.btn {
-  margin: 10px;
+.postBtn {
+  margin-left: 20px;
   background: none;
   border: none;
   padding: 0;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { deletePost, editPost } from "redux/posts/postsActions";
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -90,17 +89,17 @@ const Post = ({ post }) => {
         </Card.Text>
         <div className="likeDiv" >
           {isAuthenticated &&
-            <Card.Subtitle className="mb-2 text-muted">{post.like} likes</Card.Subtitle>
+            <Card.Subtitle className="text-muted">{post.like} likes</Card.Subtitle>
           }
           {!alreadyLiked && isAuthenticated &&
-            <Button type="submit" variant="success" onClick={() => likePost(post)}>
+            <button className="postBtn" type="submit" onClick={() => likePost(post)}>
               <FontAwesomeIcon icon={faThumbsUp} />
-            </Button>
+            </button>
           }
           {alreadyLiked && isAuthenticated &&
-            <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>
+            <button className="postBtn" type="submit" onClick={() => dislikePost(post)}>
               <FontAwesomeIcon icon={faThumbsDown} />
-            </Button>
+            </button>
           }
         </div>
         <div className="authorDiv" >
@@ -108,9 +107,10 @@ const Post = ({ post }) => {
             <Card.Link href={`/user/${post.user.id}`}>{post.user.username}</Card.Link>
           }
           {post.user && isAuthenticated && post.user.id === user.id &&
-            <Button type="submit" onClick={() => destroyPost(post)}><FontAwesomeIcon icon={faTrashAlt} /></Button>
+            <button className="postBtn" type="submit" onClick={() => destroyPost(post)}>
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </button>
           }
-          
         </div>
       </Card.Body>
     </Card>
