@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { loadPosts } from "redux/posts/postsActions";
 import { useSelector, useDispatch } from "react-redux";
 import Post from "components/PostsList/Post";
+import './index.scss';
 
 const PostsList = () => {
   const posts = useSelector((state) => state.posts.posts);
@@ -31,7 +32,7 @@ const PostsList = () => {
   return (
     <div>
       <h2>Voici les posts :</h2>
-      <div className="d-flex" style={{flexWrap: 'wrap'}}>
+      <div className="PostsDiv">
         {posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
           <Post post={post} key={post.id}/>
         ))}

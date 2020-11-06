@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { deletePost, editPost } from "redux/posts/postsActions";
+import './index.scss';
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const Post = ({ post }) => {
   const isAuthenticated = useSelector(state => state.authentification.isAuthenticated);
   const user = useSelector(state => state.authentification.user);
   const token = useSelector(state => state.authentification.token);
-  
+
   const likePost = () => {
     setLike(like + 1);
     setAlreadyLiked(true);
@@ -34,27 +35,27 @@ const Post = ({ post }) => {
       },
       body: JSON.stringify(data)
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response
-    })
-    .then((response) => response.json())
-    .then(response => {
-      dispatch(editPost(response))
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response
+      })
+      .then((response) => response.json())
+      .then(response => {
+        dispatch(editPost(response))
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   useEffect(() => {
-    if(like === post.like){
+    if (like === post.like) {
       return
     }
     editPostLikes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [like]);
 
   const destroyPost = (toDeletePost) => {
@@ -64,44 +65,48 @@ const Post = ({ post }) => {
         'Authorization': `Bearer ${token}`
       },
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response
-    })
-    .then((response) => response.json())
-    .then(response => {
-      dispatch(deletePost(response))
-    })
-    .catch(error => {
-      console.error(error)
-    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response
+      })
+      .then((response) => response.json())
+      .then(response => {
+        dispatch(deletePost(response))
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
-  
+
   return (
     <Card className="col-lg-3">
-        <Card.Body>
-          <Card.Text>
-            {post.text}
-          </Card.Text>
+      <Card.Body>
+        <Card.Text>
+          {post.text}
+        </Card.Text>
+        <div className="likeDiv" >
           {isAuthenticated &&
             <Card.Subtitle className="mb-2 text-muted">{post.like} likes</Card.Subtitle>
           }
+          {!alreadyLiked && isAuthenticated &&
+            <Button type="submit" variant="success" onClick={() => likePost(post)}>👍</Button>
+          }
+          {alreadyLiked && isAuthenticated &&
+            <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>👎</Button>
+          }
+        </div>
+        <div className="authorDiv" >
           {post.user && isAuthenticated &&
             <Card.Link href={`/user/${post.user.id}`}>{post.user.username}</Card.Link>
           }
           {post.user && isAuthenticated && post.user.id === user.id &&
             <Button type="submit" onClick={() => destroyPost(post)}>Supprimer</Button>
           }
-          {!alreadyLiked && isAuthenticated &&
-          <Button type="submit" variant="success" onClick={() => likePost(post)}>👍</Button>
-          }
-          {alreadyLiked && isAuthenticated &&
-          <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>👎</Button>
-          }
-        </Card.Body>
-      </Card>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 

@@ -1,0 +1,22 @@
+.card {
+  margin: 30px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.likeDiv {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.authorDiv {
+  display: flex;
+}
+
+.btn {
+  margin: 10px;
+}
