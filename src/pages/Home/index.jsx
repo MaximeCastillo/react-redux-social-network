@@ -4,6 +4,7 @@ import PostsList from 'components/PostsList';
 import { Jumbotron } from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
 import { loadPostsCount } from "redux/posts/postsActions";
+import './index.scss';
 
 
 const Home = () => {
