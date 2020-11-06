@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { authSuccess, authFailed } from '../../redux/authentification/authActions'
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { authSuccess, authFailed } from '../../redux/authentification/authActions';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 const Login = () => {
   const isAuthenticated = useSelector(state => state.authentification.isAuthenticated)
@@ -15,7 +16,7 @@ const Login = () => {
     if (isAuthenticated) {
       history.push('/')
     }
-  },  [isAuthenticated, history])
+  }, [isAuthenticated, history])
 
   const newLogin = (e) => {
     e.preventDefault()
@@ -33,7 +34,7 @@ const Login = () => {
       body: JSON.stringify(data)
     })
       .then(response => {
-        if(!response.ok) {
+        if (!response.ok) {
           throw Error(response.statusText);
         }
         return response
@@ -50,36 +51,42 @@ const Login = () => {
   }
 
   return (
-    <div style={{ marginTop: "30px" }}>
-      <h1>Se connecter</h1>
-      <form onSubmit={newLogin}>
-        <div className="form-group">
-          <label htmlFor="identifier">Pseudo ou email</label>
-          <input
-            type="text"
-            className="form-control"
-            id="pseudo"
-            placeholder="Entrez votre pseudo ou votre adresse mail"
-            value={identifier}
-            onChange={(e) => setIdentifier(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Entrez votre mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Accueil</Breadcrumb.Item>
+        <Breadcrumb.Item active>Se connecter</Breadcrumb.Item>
+      </Breadcrumb>
+      <div style={{ marginTop: "30px" }}>
+        <h1>Se connecter</h1>
+        <form onSubmit={newLogin}>
+          <div className="form-group">
+            <label htmlFor="identifier">Pseudo ou email</label>
+            <input
+              type="text"
+              className="form-control"
+              id="pseudo"
+              placeholder="Entrez votre pseudo ou votre adresse mail"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Entrez votre mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-        <button type="submit" className="btn btn-primary">
-          Se connecter
+          <button type="submit" className="btn btn-primary">
+            Je me connecte !
         </button>
-      </form>
+        </form>
+      </div>
     </div>
   )
 

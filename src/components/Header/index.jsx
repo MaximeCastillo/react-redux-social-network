@@ -46,7 +46,7 @@ const Header = () => {
               <Link to="/login">Se connecter</Link>
             </Nav>
             <Nav className="nav-item">
-              <Link to="/register">Créér un compte</Link>
+              <Link to="/register">Créer un compte</Link>
             </Nav>
           </Nav>
         </Navbar>
