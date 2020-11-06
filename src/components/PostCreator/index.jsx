@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { newPost } from '../../redux/posts/postsActions';
+import './index.scss';
 
 const PostCreator = () => {
   const isAuthenticated = useSelector(state => state.authentification.isAuthenticated);
@@ -45,13 +46,13 @@ const PostCreator = () => {
   return (
     <div>
       { isAuthenticated &&
-        <section>
+        <section className="createPostSctn" >
           <h5>Salut {user.username}, tu peux ajouter ton post ici :</h5>
           <Form onSubmit={createPost} >
             <Form.Group controlId="Textarea">
               <Form.Control as="textarea" rows={7} onChange={e => setMessage(e.target.value)} value={message} />
             </Form.Group>
-            <Button type="submit">Valider</Button>
+            <Button className="createPostBtn" type="submit">Poster</Button>
           </Form>
         </section>
       }
