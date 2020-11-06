@@ -50,7 +50,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: "30px" }}>
       <h1>Se connecter</h1>
       <form onSubmit={newLogin}>
         <div className="form-group">

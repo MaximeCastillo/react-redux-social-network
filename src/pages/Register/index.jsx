@@ -52,8 +52,8 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div style={{ marginTop: "30px" }}>
+      <h1>Créer un compte</h1>
       <form onSubmit={newRegister}>
         <div className="form-group">
           <label htmlFor="pseudo">Pseudo</label>
@@ -90,7 +90,7 @@ const Register = () => {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          M'inscrire
+          Je m'inscris !
         </button>
       </form>
     </div>

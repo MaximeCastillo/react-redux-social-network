@@ -58,9 +58,9 @@ const OtherProfile = () => {
   }, [token, userID, posts])
 
   return (
-    <section>
+    <section style={{ marginTop: "30px" }}>
       <h1>Bienvenue sur le profil de {user.username}</h1>
-      <p>{user.description}</p>
+      <p>"{user.description}"</p>
       <div className="d-flex" style={{flexWrap: 'wrap'}}>
         {userPosts.map((post) => (
           <Post post={post} key={post.id}/>

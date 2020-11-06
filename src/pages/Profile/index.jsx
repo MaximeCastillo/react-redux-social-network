@@ -67,9 +67,9 @@ const Profile = () => {
   
 
   return (
-    <section>
-      <h1>Bienvenue sur votre profil {user.username} !</h1>
-      <p>{user.description}</p>
+    <section style={{ marginTop: "30px" }}>
+      <h1>Bienvenue sur votre profil, {user.username} !</h1>
+      <p>"{user.description}"</p>
 
       <form onSubmit={profilChange}>
         <div className="form-group">
@@ -99,7 +99,7 @@ const Profile = () => {
           Modifier mes informations
         </button>
       </form>
-      <div className="d-flex" style={{flexWrap: 'wrap'}}>
+      <div className="d-flex" style={{ flexWrap: 'wrap', marginTop: "30px" }}>
         {userPosts.map((post) => (
           <Post post={post} key={post.id}/>
         ))}
