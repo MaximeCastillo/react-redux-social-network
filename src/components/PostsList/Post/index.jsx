@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePost, editPost } from "redux/posts/postsActions";
+import { DateTime } from "luxon";
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +14,8 @@ const Post = ({ post }) => {
   const isAuthenticated = useSelector(state => state.authentification.isAuthenticated);
   const user = useSelector(state => state.authentification.user);
   const token = useSelector(state => state.authentification.token);
-
+  const postPublishedDate = DateTime.fromISO(post.created_at).setLocale('fr').toLocaleString(DateTime.DATETIME_FULL);
+  
   const likePost = () => {
     setLike(like + 1);
     setAlreadyLiked(true);
@@ -79,8 +81,8 @@ const Post = ({ post }) => {
       .catch(error => {
         console.error(error)
       })
-  }
-
+    }
+    
   return (
     <Card className="col-lg-10">
       <Card.Body>
@@ -106,6 +108,7 @@ const Post = ({ post }) => {
           {post.user && isAuthenticated &&
             <Card.Link href={`/user/${post.user.id}`}>{post.user.username}</Card.Link>
           }
+          posté le {postPublishedDate}
           {post.user && isAuthenticated && post.user.id === user.id &&
             <button className="postBtn" type="submit" onClick={() => destroyPost(post)}>
               <FontAwesomeIcon icon={faTrashAlt} />
