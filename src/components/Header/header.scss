@@ -1,9 +1,5 @@
 .nav-item {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 8px;
+  margin-right: 18px;
   
   a, button {
     color: white;
@@ -19,16 +15,5 @@
     border: none;
     padding: 0;
   }
-
-  p {
-    position: relative;
-    top: 7.75px;
-    cursor: pointer;
-    color: white;
-
-    &:hover {
-      color: #9e9a9a;
-      text-decoration: none;
-    }
-  }
+  
 }
