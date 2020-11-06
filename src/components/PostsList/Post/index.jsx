@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { deletePost, editPost } from "redux/posts/postsActions";
 import './index.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const Post = ({ post }) => {
   }
 
   return (
-    <Card className="col-lg-3">
+    <Card className="col-lg-10">
       <Card.Body>
         <Card.Text>
           {post.text}
@@ -91,10 +93,14 @@ const Post = ({ post }) => {
             <Card.Subtitle className="mb-2 text-muted">{post.like} likes</Card.Subtitle>
           }
           {!alreadyLiked && isAuthenticated &&
-            <Button type="submit" variant="success" onClick={() => likePost(post)}>👍</Button>
+            <Button type="submit" variant="success" onClick={() => likePost(post)}>
+              <FontAwesomeIcon icon={faThumbsUp} />
+            </Button>
           }
           {alreadyLiked && isAuthenticated &&
-            <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>👎</Button>
+            <Button type="submit" variant="danger" onClick={() => dislikePost(post)}>
+              <FontAwesomeIcon icon={faThumbsDown} />
+            </Button>
           }
         </div>
         <div className="authorDiv" >
@@ -102,8 +108,9 @@ const Post = ({ post }) => {
             <Card.Link href={`/user/${post.user.id}`}>{post.user.username}</Card.Link>
           }
           {post.user && isAuthenticated && post.user.id === user.id &&
-            <Button type="submit" onClick={() => destroyPost(post)}>Supprimer</Button>
+            <Button type="submit" onClick={() => destroyPost(post)}><FontAwesomeIcon icon={faTrashAlt} /></Button>
           }
+          
         </div>
       </Card.Body>
     </Card>
